@@ -38,4 +38,14 @@
     <servlet-name>LoginView</servlet-name>
     <url-pattern>/LoginView</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DemoSocket</display-name>
+    <servlet-name>DemoSocket</servlet-name>
+    <servlet-class>IT6020003.view.DemoSocket</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DemoSocket</servlet-name>
+    <url-pattern>/DemoSocket</url-pattern>
+  </servlet-mapping>
 </web-app>

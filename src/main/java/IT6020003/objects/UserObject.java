@@ -1,153 +1,181 @@
 package IT6020003.objects;
 
 public class UserObject {
-	private int user_id;
-    private Integer user_parent_id; // This is an Integer to allow null values
-    private String user_email;
-    private String user_created_date;
-    private String user_password;
-    private String user_name;
-    private String user_fullname;
-    private String user_birthday;
-    private String user_mobilephone;
-    private String user_homephone;
-    private String user_address;
-    private String user_jobarea;
-    private String user_job;
-    private String user_roles;
-    private boolean user_logined;
+	private int userId;
+    private int userParentId;
+    private String userEmail;
+    private String userBackgroundSrc;
+    private String userAvatarSrc;
+    private String userCreatedDate;
+    private String userRecentlyViewed;
+    private String userPassword;
+    private String userName;
+    private String userFullName;
+    private String userBirthday;
+    private String userMobilePhone;
+    private String userHomePhone;
+    private String userAddress;
+    private String userJobArea;
+    private String userJob;
+    private String userRoles;
+    private boolean userLoggedIn;
 	
 	public UserObject() {
 
 	}
 
-	public int getUser_id() {
-		return user_id;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
-	public Integer getUser_parent_id() {
-		return user_parent_id;
+	public int getUserParentId() {
+		return userParentId;
 	}
 
-	public void setUser_parent_id(Integer user_parent_id) {
-		this.user_parent_id = user_parent_id;
+	public void setUserParentId(int userParentId) {
+		this.userParentId = userParentId;
 	}
 
-	public String getUser_email() {
-		return user_email;
+	public String getUserEmail() {
+		return userEmail;
 	}
 
-	public void setUser_email(String user_email) {
-		this.user_email = user_email;
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
 
-	public String getUser_created_date() {
-		return user_created_date;
+	public String getUserBackgroundSrc() {
+		return userBackgroundSrc;
 	}
 
-	public void setUser_created_date(String user_created_date) {
-		this.user_created_date = user_created_date;
+	public void setUserBackgroundSrc(String userBackgroundSrc) {
+		this.userBackgroundSrc = userBackgroundSrc;
 	}
 
-	public String getUser_password() {
-		return user_password;
+	public String getUserAvatarSrc() {
+		return userAvatarSrc;
 	}
 
-	public void setUser_password(String user_password) {
-		this.user_password = user_password;
+	public void setUserAvatarSrc(String userAvatarSrc) {
+		this.userAvatarSrc = userAvatarSrc;
 	}
 
-	public String getUser_name() {
-		return user_name;
+	public String getUserCreatedDate() {
+		return userCreatedDate;
 	}
 
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setUserCreatedDate(String userCreatedDate) {
+		this.userCreatedDate = userCreatedDate;
 	}
 
-	public String getUser_fullname() {
-		return user_fullname;
+	public String getUserRecentlyViewed() {
+		return userRecentlyViewed;
 	}
 
-	public void setUser_fullname(String user_fullname) {
-		this.user_fullname = user_fullname;
+	public void setUserRecentlyViewed(String userRecentlyViewed) {
+		this.userRecentlyViewed = userRecentlyViewed;
 	}
 
-	public String getUser_birthday() {
-		return user_birthday;
+	public String getUserPassword() {
+		return userPassword;
 	}
 
-	public void setUser_birthday(String user_birthday) {
-		this.user_birthday = user_birthday;
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
 
-	public String getUser_mobilephone() {
-		return user_mobilephone;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUser_mobilephone(String user_mobilephone) {
-		this.user_mobilephone = user_mobilephone;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public String getUser_homephone() {
-		return user_homephone;
+	public String getUserFullName() {
+		return userFullName;
 	}
 
-	public void setUser_homephone(String user_homephone) {
-		this.user_homephone = user_homephone;
+	public void setUserFullName(String userFullName) {
+		this.userFullName = userFullName;
 	}
 
-	public String getUser_address() {
-		return user_address;
+	public String getUserBirthday() {
+		return userBirthday;
 	}
 
-	public void setUser_address(String user_address) {
-		this.user_address = user_address;
+	public void setUserBirthday(String userBirthday) {
+		this.userBirthday = userBirthday;
 	}
 
-	public String getUser_jobarea() {
-		return user_jobarea;
+	public String getUserMobilePhone() {
+		return userMobilePhone;
 	}
 
-	public void setUser_jobarea(String user_jobarea) {
-		this.user_jobarea = user_jobarea;
+	public void setUserMobilePhone(String userMobilePhone) {
+		this.userMobilePhone = userMobilePhone;
 	}
 
-	public String getUser_job() {
-		return user_job;
+	public String getUserHomePhone() {
+		return userHomePhone;
 	}
 
-	public void setUser_job(String user_job) {
-		this.user_job = user_job;
+	public void setUserHomePhone(String userHomePhone) {
+		this.userHomePhone = userHomePhone;
 	}
 
-	public String getUser_roles() {
-		return user_roles;
+	public String getUserAddress() {
+		return userAddress;
 	}
 
-	public void setUser_roles(String user_roles) {
-		this.user_roles = user_roles;
+	public void setUserAddress(String userAddress) {
+		this.userAddress = userAddress;
 	}
 
-	public boolean isUser_logined() {
-		return user_logined;
+	public String getUserJobArea() {
+		return userJobArea;
 	}
 
-	public void setUser_logined(boolean user_logined) {
-		this.user_logined = user_logined;
+	public void setUserJobArea(String userJobArea) {
+		this.userJobArea = userJobArea;
 	}
-	
+
+	public String getUserJob() {
+		return userJob;
+	}
+
+	public void setUserJob(String userJob) {
+		this.userJob = userJob;
+	}
+
+	public String getUserRoles() {
+		return userRoles;
+	}
+
+	public void setUserRoles(String userRoles) {
+		this.userRoles = userRoles;
+	}
+
+	public boolean isUserLoggedIn() {
+		return userLoggedIn;
+	}
+
+	public void setUserLoggedIn(boolean userLoggedIn) {
+		this.userLoggedIn = userLoggedIn;
+	}
+
 	@Override
 	public String toString() {
-		return "UserObject [user_id=" + user_id + ", user_parent_id=" + user_parent_id + ", user_email=" + user_email
-				+ ", user_created_date=" + user_created_date + ", user_password=" + user_password + ", user_name="
-				+ user_name + ", user_fullname=" + user_fullname + ", user_birthday=" + user_birthday
-				+ ", user_mobilephone=" + user_mobilephone + ", user_homephone=" + user_homephone + ", user_address="
-				+ user_address + ", user_jobarea=" + user_jobarea + ", user_job=" + user_job + ", user_roles="
-				+ user_roles + ", user_logined=" + user_logined + "]";
+		return "UserObject [userId=" + userId + ", userParentId=" + userParentId + ", userEmail=" + userEmail
+				+ ", userBackgroundSrc=" + userBackgroundSrc + ", userAvatarSrc=" + userAvatarSrc + ", userCreatedDate="
+				+ userCreatedDate + ", userRecentlyViewed=" + userRecentlyViewed + ", userPassword=" + userPassword
+				+ ", userName=" + userName + ", userFullName=" + userFullName + ", userBirthday=" + userBirthday
+				+ ", userMobilePhone=" + userMobilePhone + ", userHomePhone=" + userHomePhone + ", userAddress="
+				+ userAddress + ", userJobArea=" + userJobArea + ", userJob=" + userJob + ", userRoles=" + userRoles
+				+ ", userLoggedIn=" + userLoggedIn + "]";
 	}
 }

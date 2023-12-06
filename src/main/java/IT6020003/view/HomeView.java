@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import IT6020003.objects.ProjectObject;
 import IT6020003.objects.UserObject;
-import IT6020003.objects.WorkingSpaceObject;
+import IT6020003.objects.WorkSpaceObject;
 import IT6020003.process.Project;
 import IT6020003.process.User;
 import IT6020003.process.WorkingSpace;
@@ -115,7 +115,7 @@ public class HomeView extends HttpServlet {
 			out.append("                    <h3 style=\"font-size: 16px; margin: 20px 0;\">CÁC KHÔNG GIAN LÀM VIỆC CỦA BẠN</h3>");
 			
 			WorkingSpace ws = new WorkingSpace();
-			ArrayList<WorkingSpaceObject> list_ws = ws.getAllWorkingSpaceObjectsByUserId(null, items.getUser_id());
+			ArrayList<WorkSpaceObject> list_ws = ws.getAllWorkingSpaceObjectsByUserId(null, items.getUser_id());
 			list_ws.forEach(item_ws -> {
 				out.append("                    <div class=\"working_space_header row mb-5\">");
 				out.append("                        <div class=\"working_space_name col-4 d-flex\">");

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import IT6020003.ConnectionPool;
 import IT6020003.ConnectionPoolImpl;
-import IT6020003.objects.WorkingSpaceObject;
+import IT6020003.objects.WorkSpaceObject;
 
 public class WorkingSpace {
 	// Kết nối để làm việc với CSDL
@@ -39,10 +39,10 @@ public class WorkingSpace {
 	
 	// Phương thức trả về danh sách tất cả các đối tượng ProjectObject từ cơ sở dữ
 		// liệu
-		public ArrayList<WorkingSpaceObject> getAllWorkingSpaceObjects(WorkingSpaceObject similar) {
+		public ArrayList<WorkSpaceObject> getAllWorkingSpaceObjects(WorkSpaceObject similar) {
 			// Khởi tạo một ArrayList để lưu trữ các đối tượng ProjectObject
-			ArrayList<WorkingSpaceObject> items = new ArrayList<>();
-			WorkingSpaceObject item;
+			ArrayList<WorkSpaceObject> items = new ArrayList<>();
+			WorkSpaceObject item;
 
 			// Xây dựng câu truy vấn SQL để lấy tất cả dữ liệu từ bảng Project
 			StringBuilder sql = new StringBuilder();
@@ -60,7 +60,7 @@ public class WorkingSpace {
 					// Duyệt qua tất cả các dòng kết quả
 					while (rs.next()) {
 						// Tạo đối tượng ProjectObject để lưu trữ thông tin từ ResultSet
-						item = new WorkingSpaceObject();
+						item = new WorkSpaceObject();
 
 						// Đọc dữ liệu từ ResultSet và set giá trị cho đối tượng ArticleObject
 						item.setWorking_space_id(rs.getInt("working_space_id"));
@@ -89,10 +89,10 @@ public class WorkingSpace {
 			return items;
 		}
 		
-		public ArrayList<WorkingSpaceObject> getAllWorkingSpaceObjectsByUserId(WorkingSpaceObject similar, int user_id) {
+		public ArrayList<WorkSpaceObject> getAllWorkingSpaceObjectsByUserId(WorkSpaceObject similar, int user_id) {
 			// Khởi tạo một ArrayList để lưu trữ các đối tượng ProjectObject
-			ArrayList<WorkingSpaceObject> items = new ArrayList<>();
-			WorkingSpaceObject item;
+			ArrayList<WorkSpaceObject> items = new ArrayList<>();
+			WorkSpaceObject item;
 
 			// Xây dựng câu truy vấn SQL để lấy tất cả dữ liệu từ bảng Project
 			StringBuilder sql = new StringBuilder();
@@ -110,7 +110,7 @@ public class WorkingSpace {
 					// Duyệt qua tất cả các dòng kết quả
 					while (rs.next()) {
 						// Tạo đối tượng ProjectObject để lưu trữ thông tin từ ResultSet
-						item = new WorkingSpaceObject();
+						item = new WorkSpaceObject();
 
 						// Đọc dữ liệu từ ResultSet và set giá trị cho đối tượng ArticleObject
 						item.setWorking_space_id(rs.getInt("working_space_id"));
@@ -143,7 +143,7 @@ public class WorkingSpace {
 			// tạo đối tượng làm việc với Article
 			WorkingSpace ws = new WorkingSpace();
 
-			ArrayList<WorkingSpaceObject> items = ws.getAllWorkingSpaceObjects(null);
+			ArrayList<WorkSpaceObject> items = ws.getAllWorkingSpaceObjects(null);
 
 			// In ra màn hình
 			items.forEach(item -> {

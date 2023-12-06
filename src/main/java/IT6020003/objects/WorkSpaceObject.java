@@ -1,13 +1,13 @@
 package IT6020003.objects;
 
-public class WorkingSpaceObject {
+public class WorkSpaceObject {
 	private int working_space_id;
     private String working_space_name;
     private String working_space_create_date;
     private String working_space_url;
     private int user_id;
     
-    public WorkingSpaceObject() {
+    public WorkSpaceObject() {
     	
     }
 
@@ -46,7 +46,7 @@ public class WorkingSpaceObject {
 	public int getUser_id() {
 		return user_id;
 	}
-
+ 
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 	}
