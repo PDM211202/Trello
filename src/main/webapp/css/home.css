@@ -28,6 +28,16 @@ span {
     font-size: 12px;
 }
 
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: inline-block;
+    
+}
+
 .img_lg {
     width: 32px;
     height: 32px;
@@ -53,6 +63,16 @@ span {
     margin-top: 10px;
 }
 
+.tick__star__header i {
+    font-size: 16px;
+    margin: 18px 8px;
+}
+
+.dropdown {
+    
+}
+
+
 .working_space_name h3{
     line-height: 32px;
     margin: 0;
@@ -74,10 +94,28 @@ span {
 }
 
 .menu_work_space {
+    position: relative;
     padding: 10px 14px;
     color: #44546f;
     font-size: 12px;
     font-weight: 700;
+}
+
+.menu_work_space i {
+    position: absolute;
+    font-size: 14px;
+    width: 24;
+    height: 24px;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.menu_work_space i:hover {
+    background-color: #091e4224;
+    color: #44546f;
 }
 
 .working_space_options {
@@ -97,6 +135,7 @@ span {
     width: 220px;
     height: 110px;
     margin: 10px;
+    border-radius: 5px;
 }
 
 .working_space_list_item a {
@@ -108,4 +147,88 @@ span {
     font-size: 16px;
     text-decoration: none;
     padding-top: 10px;
+}
+
+.modal-body h3 {
+    color: #172b4d;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 28px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.modal-body p {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    margin-bottom: 4px;
+    margin-top: 24px;
+    color: var(--ds-text, #172b4d);
+}
+
+.modal-body input {
+    width: 388px;
+    height: 48px;
+    margin-bottom: 6px;
+    background-color:#fff;
+    border: none;
+    border-radius: 3px;
+    box-shadow: inset 0 0 0 2px #091e4224;
+    box-sizing: border-box;
+    display: block;
+    line-height: 20px;
+    outline: none;
+    padding: 8px 12px;
+    transition-duration: 85ms;
+}
+
+.modal-body textarea {
+    width: 388px;
+    margin-bottom: 6px;
+    resize: none;
+    background-color:#fff;
+    border: none;
+    border-radius: 3px;
+    box-shadow: inset 0 0 0 2px #091e4224;
+    box-sizing: border-box;
+    display: block;
+    line-height: 20px;
+    outline: none;
+    padding: 8px 12px;
+    transition-duration: 85ms;
+}
+
+#ProjectModal {
+	
+}
+
+.modal-img {
+	
+	width: 200px;
+	height: 120px;
+	margin: 0 auto;
+	position: relative;
+	
+}
+
+.modal-img img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.project_bg {
+	display: flex;
+	justify-content: space-around;
+}
+
+.bg_item {
+	width: 80px;
+	height: 50px;
+	margin: 10px 0;
+	border-radius: 5px;
 }

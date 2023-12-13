@@ -8,22 +8,22 @@ import java.util.ArrayList;
 
 import IT6020003.ConnectionPool;
 import IT6020003.ConnectionPoolImpl;
-import IT6020003.objects.ProjectObject;
+import IT6020003.objects.CommentObject;
 
-public class Project {
+public class Comment {
 	// kết nối để làm việc vs csdl
 	private Connection con;
 
 	// bộ quản lý kết nối của riêng section
 	private ConnectionPool cp;
 
-	public Project() {
+	public Comment() {
 		// xác định bộ quản lý kết nối
 		this.cp = new ConnectionPoolImpl();
 
 		// Xin kết nối để làm việc
 		try {
-			this.con = this.cp.getConnection("Project");
+			this.con = this.cp.getConnection("Comment");
 
 			// kiểm tra chế độ thực thi của kết nối
 			if (this.con.getAutoCommit()) {
@@ -34,14 +34,14 @@ public class Project {
 		}
 	}
 
-	public ArrayList<ProjectObject> getAllProjectObjects(ProjectObject similar) {
+	public ArrayList<CommentObject> getAllCommentObjects(CommentObject similar) {
 		// Khởi tạo một ArrayList để lưu trữ các đối tượng ProjectObject
-		ArrayList<ProjectObject> items = new ArrayList<>();
-		ProjectObject item;
+		ArrayList<CommentObject> items = new ArrayList<>();
+		CommentObject item;
 
 		// Xây dựng câu truy vấn SQL để lấy tất cả dữ liệu từ bảng Project
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT * FROM tblproject");
+		sql.append("SELECT * FROM tblcomment");
 
 		try {
 			// Tạo đối tượng PreparedStatement để thực hiện câu truy vấn
@@ -55,19 +55,14 @@ public class Project {
 				// Duyệt qua tất cả các dòng kết quả
 				while (rs.next()) {
 					// Tạo đối tượng ProjectObject để lưu trữ thông tin từ ResultSet
-					item = new ProjectObject();
+					item = new CommentObject();
 
 					// Đọc dữ liệu từ ResultSet và set giá trị cho đối tượng ArticleObject
-					item.setProject_id(rs.getInt("project_id"));
-					item.setProject_name(rs.getString("project_name"));
-					item.setWorking_space_id(rs.getInt("working_space_id"));
-					item.setProject_create_date(rs.getString("project_create_date"));
-					item.setProject_start_date(rs.getString("project_start_date"));
-					item.setProject_end_date(rs.getString("project_end_date"));
-					item.setProject_status(rs.getString("project_status"));
-					item.setProject_background_src(rs.getString("project_background_src"));
-					item.setProject_icon_url(rs.getString("project_icon_url"));
-
+					item.setComment_id(rs.getInt("comment_id"));
+					item.setTodo_id(rs.getInt("todo_id"));
+					item.setUser_id(rs.getInt("user_id"));
+					item.setComment_text(rs.getString("comment_text"));
+					item.setComment_date(rs.getString("comment_date"));
 					// Thêm đối tượng ArticleObject vào danh sách
 					items.add(item);
 				}
@@ -89,14 +84,14 @@ public class Project {
 		return items;
 	}
 
-	public ArrayList<ProjectObject> getAllProjectObjectsByWorkSpaceId(ProjectObject similar, int id) {
+	public ArrayList<CommentObject> getAllCommentObjectsByTodoId(CommentObject similar, int id) {
 		// Khởi tạo một ArrayList để lưu trữ các đối tượng ProjectObject
-		ArrayList<ProjectObject> items = new ArrayList<>();
-		ProjectObject item;
+		ArrayList<CommentObject> items = new ArrayList<>();
+		CommentObject item;
 
 		// Xây dựng câu truy vấn SQL để lấy tất cả dữ liệu từ bảng Project
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT * FROM tblproject WHERE working_space_id= ?");
+		sql.append("SELECT * FROM tblcomment WHERE todo_id= ?");
 
 		try {
 			// Tạo đối tượng PreparedStatement để thực hiện câu truy vấn
@@ -110,18 +105,14 @@ public class Project {
 				// Duyệt qua tất cả các dòng kết quả
 				while (rs.next()) {
 					// Tạo đối tượng ProjectObject để lưu trữ thông tin từ ResultSet
-					item = new ProjectObject();
+					item = new CommentObject();
 
 					// Đọc dữ liệu từ ResultSet và set giá trị cho đối tượng ArticleObject
-					item.setProject_id(rs.getInt("project_id"));
-					item.setProject_name(rs.getString("project_name"));
-					item.setWorking_space_id(rs.getInt("working_space_id"));
-					item.setProject_create_date(rs.getString("project_create_date"));
-					item.setProject_start_date(rs.getString("project_start_date"));
-					item.setProject_end_date(rs.getString("project_end_date"));
-					item.setProject_status(rs.getString("project_status"));
-					item.setProject_background_src(rs.getString("project_background_src"));
-					item.setProject_icon_url(rs.getString("project_icon_url"));
+					item.setComment_id(rs.getInt("comment_id"));
+					item.setTodo_id(rs.getInt("todo_id"));
+					item.setUser_id(rs.getInt("user_id"));
+					item.setComment_text(rs.getString("comment_text"));
+					item.setComment_date(rs.getString("comment_date"));
 					// Thêm đối tượng ArticleObject vào danh sách
 					items.add(item);
 				}
@@ -143,29 +134,23 @@ public class Project {
 		return items;
 	}
 
-	public boolean addProject(ProjectObject item) {
-		// Xây dựng câu truy vấn SQL để chèn dữ liệu vào bảng tblproject
+	public boolean addComment(CommentObject item) {
+		// Xây dựng câu truy vấn SQL để chèn dữ liệu vào bảng tblcomment
 		StringBuilder sql = new StringBuilder();
-		sql.append("INSERT INTO tblproject(");
-		sql.append(
-				"project_name, working_space_id, project_create_date, project_start_date, project_end_date, project_status, project_background_src, project_icon_url");
+		sql.append("INSERT INTO tblcomment(");
+		sql.append("todo_id, user_id, comment_text, comment_date");
 		sql.append(") ");
-		sql.append("VALUES(?,?,?,?,?,?,?,?)");
+		sql.append("VALUES(?,?,?,?)");
 
 		try {
 			// Tạo đối tượng PreparedStatement để thực hiện câu truy vấn
 			PreparedStatement pre = this.con.prepareStatement(sql.toString());
 
-			// Truyền giá trị cho các tham số trong câu truy vấn từ đối tượng
-			// ProjectObject
-			pre.setString(1, item.getProject_name());
-			pre.setInt(2, item.getWorking_space_id());
-			pre.setString(3, item.getProject_create_date());
-			pre.setString(4, item.getProject_start_date());
-			pre.setString(5, item.getProject_end_date());
-			pre.setString(6, item.getProject_status());
-			pre.setString(7, item.getProject_background_src());
-			pre.setString(8, item.getProject_icon_url());
+			// Truyền giá trị cho các tham số trong câu truy vấn từ đối tượng CommentObject
+			pre.setInt(1, item.getTodo_id());
+			pre.setInt(2, item.getUser_id());
+			pre.setString(3, item.getComment_text());
+			pre.setString(4, item.getComment_date());
 
 			// Thực hiện câu truy vấn chèn dữ liệu
 			int result = pre.executeUpdate();
@@ -197,35 +182,27 @@ public class Project {
 	}
 
 	// Phương thức cập nhật thông tin một bài viết trong cơ sở dữ liệu
-	public boolean updateProject(ProjectObject item, int id) {
-		// Xây dựng câu truy vấn SQL để cập nhật dữ liệu trong bảng tblproject
+	public boolean updateArticle(CommentObject item, int id) {
+		// Xây dựng câu truy vấn SQL để cập nhật dữ liệu trong bảng tblcomment
 		StringBuilder sql = new StringBuilder();
-		sql.append("UPDATE tblproject SET ");
-		sql.append("project_name = ?, ");
-		sql.append("working_space_id = ?, ");
-		sql.append("project_create_date = ?, ");
-		sql.append("project_start_date = ?, ");
-		sql.append("project_end_date = ?, ");
-		sql.append("project_status = ?, ");
-		sql.append("project_background_src = ?, ");
-		sql.append("project_icon_url = ? ");
-		sql.append("WHERE project_id = ?");
+		sql.append("UPDATE tblcomment SET ");
+		sql.append("todo_id = ?, ");
+		sql.append("user_id = ?, ");
+		sql.append("comment_text = ?, ");
+		sql.append("comment_date = ? ");
+		sql.append("WHERE comment_id = ?");
 
 		try {
 			// Tạo đối tượng PreparedStatement để thực hiện câu truy vấn
 			PreparedStatement pre = this.con.prepareStatement(sql.toString());
 
-			// Truyền giá trị cho các tham số trong câu truy vấn từ đối tượng
-			// ProjectObject
-			pre.setString(1, item.getProject_name());
-			pre.setInt(2, item.getWorking_space_id());
-			pre.setString(3, item.getProject_create_date());
-			pre.setString(4, item.getProject_start_date());
-			pre.setString(5, item.getProject_end_date());
-			pre.setString(6, item.getProject_status());
-			pre.setString(7, item.getProject_background_src());
-			pre.setString(8, item.getProject_icon_url());
-			pre.setInt(9, id);
+			// Truyền giá trị cho các tham số trong câu truy vấn từ đối tượng CommentObject
+			pre.setInt(1, item.getTodo_id());
+			pre.setInt(2, item.getUser_id());
+			pre.setString(3, item.getComment_text());
+			pre.setString(4, item.getComment_date());
+			pre.setInt(5, id);
+
 			// Thực hiện câu truy vấn cập nhật dữ liệu
 			int result = pre.executeUpdate();
 
@@ -257,15 +234,15 @@ public class Project {
 	}
 
 	// Phương thức xóa một bài viết từ cơ sở dữ liệu theo ID
-	public boolean deleteProjectById(ProjectObject item, int id) {
-		// Câu truy vấn SQL để xóa bản ghi từ bảng tblproject dựa trên article_id
-		String sql = "DELETE FROM tblproject WHERE project_id = ?";
+	public boolean deleteCommentById(CommentObject item, int id) {
+		// Câu truy vấn SQL để xóa bản ghi từ bảng tblcomment dựa trên article_id
+		String sql = "DELETE FROM tblcomment WHERE comment_id = ?";
 
 		try {
 			// Tạo đối tượng PreparedStatement để thực hiện câu truy vấn
 			PreparedStatement pre = this.con.prepareStatement(sql);
 
-			// Truyền giá trị cho tham số trong câu truy vấn từ đối tượng ProjectObject
+			// Truyền giá trị cho tham số trong câu truy vấn từ đối tượng CommentObject
 			pre.setInt(1, id);
 
 			// Thực hiện câu truy vấn xóa bản ghi
@@ -296,5 +273,4 @@ public class Project {
 		// Trả về false nếu có lỗi xảy ra
 		return false;
 	}
-
 }

@@ -191,7 +191,7 @@ enableDragAndDropForCards();
 
 document.addEventListener('DOMContentLoaded', function() {
   // Lấy tất cả các list-group-item
-  const items = document.querySelectorAll('.list-group-item');
+  const items = document.querySelectorAll('.list-group-item-p');
 
   // Thêm sự kiện hover
   items.forEach(item => {

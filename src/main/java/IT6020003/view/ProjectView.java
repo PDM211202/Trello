@@ -23,7 +23,7 @@ import IT6020003.process.Work;
 public class ProjectView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String CONTENT_TYPE = "text/html; charset=utf-8";
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -64,10 +64,10 @@ public class ProjectView extends HttpServlet {
 		out.append("");
 		out.append("  <title>Trello</title>");
 		out.append("");
-		out.append("  <link rel=\"stylesheet\" href=\"/itad/css/index.css\">");
+		out.append("  <link rel=\"stylesheet\" href=\"/itad/css/project.css\">");
 		out.append("</head>");
 		out.append("");
-		out.append("<body>");
+		out.append("<body style=\"background-image: url(http://localhost:8080/itad/img/project_bg_2.jpg); \"");
 		out.append("  <div class=\"container-fluid\">");
 		out.append("    <header class=\"header\">");
 		out.append("");
@@ -152,7 +152,7 @@ public class ProjectView extends HttpServlet {
 			out.append("                <div class=\"list-group\" data-drop-target-for-element=\"true\">");
 			
 			Task t = new Task();
-			ArrayList<TaskObject> listTask = t.getAllTaskObjectsByWorkId(null, item.getWork_id());
+			ArrayList<TaskObject> listTask = t.getAllTaskObjectsByWorkSpaceId(null, item.getWork_id());
 			listTask.forEach(item_task -> {
 				out.append("                  <div class=\"list-group-item\" task-position draggable=\"true\" data-drop-target-for-element=\"true\" >");
 				out.append("                    <div class=\"overlay\">");

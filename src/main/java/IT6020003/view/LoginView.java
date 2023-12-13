@@ -8,6 +8,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import IT6020003.objects.UserObject;
+import IT6020003.process.User;
+
 /**
  * Servlet implementation class LoginView
  */
@@ -56,13 +59,17 @@ public class LoginView extends HttpServlet {
 		out.append("<p>Log in to continue</p>");
 		out.append("</div>");
 		out.append("<div class=\"form__input\">");
+		out.append("<form action=\"http://localhost:8080/itad/LoginView\" method=\"post\">");
 		out.append("<input id=\"email\" type=\"text\" name=\"email\" placeholder=\"Enter your email\">");
 		out.append("<br>");
 		out.append("<input id=\"password\" type=\"password\" name=\"password\" placeholder=\"Enter your password\">");
+		out.append("<button class=\"btn btn-primary\" type=\"submit\">Log in</button>");
+		out.append("</form>");
 		out.append("</div>");
-		out.append("<a href=\"#\" class=\"btn btn-primary\" onclick=\"login()\">Log in</a>");
+		
+		
 		out.append("</div>");
-		out.append("<script src=\"/itad/js/login.js\"></script>");
+//		out.append("<script src=\"/itad/js/login.js\"></script>");
 		out.append("<!-- Optional JavaScript; choose one of the two! -->");
 		out.append("<!-- Option 1: Bootstrap Bundle with Popper -->");
 		out.append("<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js\"");
@@ -83,7 +90,15 @@ public class LoginView extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		User u = new User();
+		UserObject items = u.getUserObjectByEmail(null, email);
+		if (!password.equals(items.getUser_password())) {
+			response.sendRedirect("http://localhost:8080/itad/LoginView");
+		} else {
+			response.sendRedirect("http://localhost:8080/itad/HomeView?email="+items.getUser_email()+"");
+		}
 	}
 
 }
