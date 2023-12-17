@@ -239,3 +239,144 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  var addButton = document.querySelector('.description__add');
+  var form = document.querySelector('.description__content form');
+  var cancelButton = form.querySelector('button[type="reset"]');
+
+  addButton.addEventListener('click', function () {
+      addButton.classList.add('hide');
+      form.classList.remove('hide');
+  });
+
+  cancelButton.addEventListener('click', function (event) {
+      event.preventDefault(); // Ngăn chặn hành động mặc định của nút reset
+      addButton.classList.remove('hide');
+      form.classList.add('hide');
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var formChecks = document.querySelectorAll('.form-check');
+
+  formChecks.forEach(function (formCheck) {
+      var updateButton = formCheck.querySelector('.btn-update-todo');
+      var cancelButton = formCheck.querySelector('.update_todo button[type="reset"]');
+      var updateTodo = formCheck.querySelector('.update_todo');
+      var formCheckLabel = formCheck.querySelector('.form-check-label');
+
+      updateButton.addEventListener('click', function () {
+          formCheckLabel.classList.add('hide');
+          updateButton.classList.add('hide');
+          updateTodo.classList.remove('hide');
+      });
+
+      cancelButton.addEventListener('click', function (event) {
+          event.preventDefault(); // Ngăn chặn hành động mặc định của nút reset
+          formCheckLabel.classList.remove('hide');
+          updateButton.classList.remove('hide');
+          updateTodo.classList.add('hide');
+      });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Hàm tính toán và cập nhật phần trăm hoàn thành
+  function updateProgress() {
+      var checkboxes = document.querySelectorAll('.form-check-input');
+      var checked = document.querySelectorAll('.form-check-input:checked');
+      var percentage = (checked.length / checkboxes.length) * 100;
+
+      var progressSpan = document.querySelector('.progress_per span');
+      var progressBar = document.querySelector('.progress_per .persen');
+
+      progressSpan.textContent = percentage.toFixed(0) + '%';
+      progressBar.style.width = percentage.toFixed(0) + '%';
+  }
+
+  // Gọi hàm khi trang tải xong
+  updateProgress();
+
+  // Cập nhật tiến trình mỗi khi một checkbox được click
+  document.querySelectorAll('.form-check-input').forEach(function (checkbox) {
+      checkbox.addEventListener('change', updateProgress);
+  });
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  var toggleHideButton = document.querySelector('.hide_todo');
+  var formChecks = document.querySelectorAll('.form-check');
+
+  toggleHideButton.addEventListener('click', function () {
+      var isHiding = toggleHideButton.textContent.includes('Ẩn');
+      
+      formChecks.forEach(function (formCheck) {
+          if (formCheck.querySelector('.form-check-input').checked) {
+              formCheck.style.display = isHiding ? 'none' : 'block';
+          }
+      });
+
+      toggleHideButton.textContent = isHiding ? 'Hiển thị các mục đã chọn' : 'Ẩn các mục đã chọn';
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var addButton = document.querySelector('.btn_addtodo');
+  var todoInfo = document.querySelector('.todo_info');
+  var cancelButton = document.querySelector('.todo_info .btn[type="reset"]');
+
+  addButton.addEventListener('click', function () {
+      todoInfo.style.display = 'block';
+      addButton.style.display = 'none';
+  });
+
+  cancelButton.addEventListener('click', function () {
+      todoInfo.style.display = 'none';
+      addButton.style.display = 'block';
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var commentContents = document.querySelectorAll('.comment_content');
+
+  commentContents.forEach(function (comment) {
+      var editButton = comment.querySelector('.btn_update_comment');
+      var cancelButton = comment.querySelector('.update_comment .btn[type="reset"]');
+      var itemBody = comment.querySelector('.item_body');
+      var updateCommentSection = comment.querySelector('.update_comment');
+
+      editButton.addEventListener('click', function () {
+          itemBody.style.display = 'none';
+          updateCommentSection.style.display = 'block';
+      });
+
+      cancelButton.addEventListener('click', function () {
+          itemBody.style.display = 'block';
+          updateCommentSection.style.display = 'none';
+      });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var bodyItems = document.querySelectorAll('.body_item');
+
+  bodyItems.forEach(function (item) {
+      var showAdd = item.querySelector('.show_add');
+
+      // Hiển thị show_add khi click vào body_item
+      item.addEventListener('click', function (event) {
+          showAdd.style.display = 'block';
+          event.stopPropagation(); // Ngăn chặn sự kiện nổi bọt lên document
+      });
+  });
+
+  // Ẩn tất cả show_add khi click ra ngoài
+  document.addEventListener('click', function () {
+      document.querySelectorAll('.show_add').forEach(function (showAdd) {
+          showAdd.style.display = 'none';
+      });
+  });
+});

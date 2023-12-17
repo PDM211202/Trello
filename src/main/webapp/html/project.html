@@ -136,6 +136,25 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
+                            <div class="modal-show mt-4 mb-3 d-flex">
+                                <div class="modal-user ">
+                                    <p>Thành viên</p>
+                                    <div class="user-show d-flex justify-content-start mt-2">
+                                        <div class="user-avatar">
+                                            <img src="../img/logo.png" alt="">
+                                        </div>
+                                        <div class="user-avatar">
+                                            <img src="../img/logo.png" alt="">
+                                        </div>
+                                        <div style="background-color: #9fadbc;" class=" user-avatar">
+                                            <i class="fa fa-plus"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-tag">
+                                    <p>Nhãn</p>
+                                </div>
+                            </div>
                             <div class="modal-body d-flex">
                                 <div class="body_left">
                                     <div class="description">
@@ -144,15 +163,170 @@
                                             <h5>Mô tả</h5>
                                         </div>
                                         <div class="description__content">
-                                            <div class="description__add hide">Thêm mô tả chi tiết hơn...</div>
-                                            <form action="">
-                                                <textarea class="description_text" name="description_text" id="description_text" cols="30"
-                                                    rows="10"></textarea>
+                                            <div class="description__add ">Thêm mô tả chi tiết hơn...</div>
+                                            <form class="hide" action="">
+                                                <textarea class="description_text" name="description_text"
+                                                    id="description_text" cols="30" rows="10"></textarea>
                                                 <button class="btn btn-primary " type="submit">Lưu</button>
                                                 <button class="btn" type="reset">Hủy</button>
                                             </form>
                                         </div>
-
+                                    </div>
+                                    <div class="todolist">
+                                        <div class="todolist-header d-flex justify-content-between">
+                                            <div class="todolist_title d-flex">
+                                                <i style="font-size: 16px; line-height: 50px; margin: 0 10px; " class="fa fa-calendar-check"></i>
+                                                <h5>Việc cần làm</h5>
+                                            </div>
+                                            <div class="todolist_option d-flex">
+                                                <div class="hide_todo">
+                                                    Ẩn các mục đã chọn
+                                                </div>
+                                                <div class="delete_todolist">
+                                                    Xóa
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="progress_per">
+                                            <span>50%</span>
+                                            <div class="progress_persen">
+                                                <div class="persen">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Default checkbox 1
+                                            </label>
+                                            <button type="button" class="btn btn-update-todo">Chỉnh sửa</button>
+                                            <div class="update_todo hide">
+                                                <textarea name="update_todo" id="update_todo" cols="30" rows="10"></textarea>
+                                                <div class="todo_btn m-0">
+                                                    <button type="button" class="btn btn-primary">Lưu</button>
+                                                    <button class="btn" type="reset">Hủy</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckChecked">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Checked checkbox 2
+                                            </label>
+                                            <button type="button" class="btn btn-update-todo">Chỉnh sửa</button>
+                                            <div class="update_todo hide">
+                                                <textarea name="update_todo" id="update_todo" cols="30" rows="10"></textarea>
+                                                <div class="todo_btn m-0">
+                                                    <button type="button" class="btn btn-primary">Lưu</button>
+                                                    <button class="btn" type="reset">Hủy</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Default checkbox 3
+                                            </label>
+                                            <button type="button" class="btn btn-update-todo">Chỉnh sửa</button>
+                                            <div class="update_todo hide">
+                                                <textarea name="update_todo" id="update_todo" cols="30" rows="10"></textarea>
+                                                <div class="todo_btn m-0">
+                                                    <button type="button" class="btn btn-primary">Lưu</button>
+                                                    <button class="btn" type="reset">Hủy</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Default checkbox 4
+                                            </label>
+                                            <button type="button" class="btn btn-update-todo">Chỉnh sửa</button>
+                                            <div class="update_todo hide">
+                                                <textarea name="update_todo" id="update_todo" cols="30" rows="10"></textarea>
+                                                <div class="todo_btn m-0">
+                                                    <button type="button" class="btn btn-primary">Lưu</button>
+                                                    <button class="btn" type="reset">Hủy</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="add_todo">
+                                            <button type="button" class="btn btn_addtodo">Thêm một mục</button>
+                                            <div class="todo_info hide">
+                                                <textarea name="todo" id="" cols="50" rows="3"></textarea>
+                                                <div class="todo_btn">
+                                                    <button type="button" class="btn btn-primary">Thêm</button>
+                                                    <button class="btn" type="reset">Hủy</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="comment">
+                                            <div class="add_comment d-flex">
+                                                <div class="user-avatar">
+                                                    <img src="../img/logo.png" alt="">
+                                                </div>
+                                                <input type="text" name="comment_text" placeholder="Viết bình luận...">
+                                                <button type="button" class="btn btn-primary">Lưu</button>
+                                            </div>
+                                            <div class="comment_content d-flex mt-3">
+                                                <div class="user-avatar">
+                                                    <img src="../img/logo.png" alt="">
+                                                </div>
+                                                <div class="comment_item">
+                                                    <div class="item_title">
+                                                        <label>PDM user</label>
+                                                        <span>11 phút trước</span>
+                                                    </div>
+                                                    <div class="item_body">
+                                                        <div class="comment_user mt-2">
+                                                            2
+                                                        </div>
+                                                        <div class="comment_option">
+                                                            <span class="btn_update_comment">Chỉnh sửa</span>
+                                                            <span class="btn_delete_comment">Xóa</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="update_comment mt-2">
+                                                        <textarea name="update_comment" id="update_comment" cols="30" rows="10"></textarea>
+                                                        <div class="comment_btn">
+                                                            <button type="button" class="btn btn-primary">Lưu</button>
+                                                            <button class="btn" type="reset">Hủy</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="comment_content d-flex mt-3">
+                                                <div class="user-avatar">
+                                                    <img src="../img/logo.png" alt="">
+                                                </div>
+                                                <div class="comment_item">
+                                                    <div class="item_title">
+                                                        <label>PDM user</label>
+                                                        <span>11 phút trước</span>
+                                                    </div>
+                                                    <div class="item_body">
+                                                        <div class="comment_user mt-2">
+                                                            2
+                                                        </div>
+                                                        <div class="comment_option">
+                                                            <span class="btn_update_comment">Chỉnh sửa</span>
+                                                            <span class="btn_delete_comment">Xóa</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="update_comment mt-2">
+                                                        <textarea name="update_comment" id="update_comment" cols="30" rows="10"></textarea>
+                                                        <div class="comment_btn">
+                                                            <button type="button" class="btn btn-primary">Lưu</button>
+                                                            <button class="btn" type="reset">Hủy</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="body_right">
@@ -160,14 +334,43 @@
                                     <div class="body_item">
                                         <i class="fa fa-user"></i>
                                         <p>Thành viên</p>
+                                        <div class="add_user show_add">
+                                            <div class="add_user_title">
+                                                Thành viên
+                                            </div>
+                                            <input type="text" name="search_user" id="">
+                                            <p>Thành viên của bảng</p>
+                                            <div class="list_user d-flex">
+                                                <div class="user-avatar">
+                                                    <img src="../img/logo.png" alt="">
+                                                </div>
+                                                <p class="user_name">PDM</p>
+                                            </div>
+                                            <div class="list_user added d-flex">
+                                                <div class="user-avatar">
+                                                    <img src="../img/logo.png" alt="">
+                                                </div>
+                                                <p class="user_name">PDM</p>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="body_item">
                                         <i class="fa fa-tags"></i>
                                         <p>Nhãn</p>
+                                        <div class="add_todo show_add">
+                                            
+                                        </div>
                                     </div>
                                     <div class="body_item">
                                         <i class="fa fa-check-square"></i>
                                         <p>Việc cần làm</p>
+                                        <div class="create_todo show_add">
+                                            <div class="create_todo_title">
+                                                Thêm danh sách công việc
+                                            </div>
+                                            <input type="text" name="todo_name" id="" placeholder="Việc cần làm">
+                                            <button type="button" class="btn btn-primary">Thêm</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -185,18 +388,9 @@
 
     <script src="../js/index.js"></script>
 
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
 </body>
 
 </html>

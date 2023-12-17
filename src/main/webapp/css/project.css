@@ -474,6 +474,7 @@ span {
 }
 
 .body_right .body_item {
+    position: relative;
     display: flex;
     color: #44546f;
     font-size: 12px;
@@ -483,9 +484,289 @@ span {
     margin-top: 16px;
     background-color: #091e420f;
     padding: 10px 10px;
+    cursor: pointer;
 }
 
 .body_right .body_item i {
     line-height: 20px;
     margin-right: 8px;
+}
+
+.modal-show {
+    margin-left: 55px;
+}
+
+.modal-show .modal-user {
+    margin-right: 15px;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    text-align: center;
+    margin-right: 5px;
+}
+
+.user-avatar img {
+    width: 100%;
+    border-radius: 50%;
+}
+.modal-show .user-show .user-avatar i {
+    font-size: 16px;
+    line-height: 32px;
+}
+
+.todo_item {
+    position: none;
+}
+
+.todolist .todolist-header .todolist_title {
+    height: 50px;
+}
+
+
+.todolist .todolist-header .todolist_title h5 {
+    font-size: 16px;
+    line-height: 50px;
+    margin: 0 10px;
+}
+
+.todolist .todolist-header .todolist_option .hide_todo, .delete_todolist {
+    height: 32px;
+    background-color: #091e420f;
+    margin-right: 12px;
+    padding: 0 10px;
+    line-height: 32px;
+    margin-top: auto;
+    margin-bottom: auto;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.todolist .progress_per {
+    height: 32px;
+}
+
+.todolist .progress_per span {
+    font-size: 12px;
+    margin: 0 10px;
+}
+
+.todolist .progress_per .progress_persen {
+    width: 89%;
+    display: inline-block;
+    height: 8px;
+    background-color: #091e420f;
+    border-radius: 5px;
+}
+
+.todolist .progress_per .progress_persen .persen {
+    background-color: #0d6efd;
+    width: 50%;
+    height: 8px;
+    border-radius: 5px;
+}
+
+.todolist .form-check {
+    margin: 0 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.todolist .form-check .form-check-label {
+    padding: 0 10px;
+    font-size: 14px;
+}
+
+.btn_addtodo {
+    background-color: #091e420f;
+    margin: 10px;
+}
+
+.todo_info textarea{
+    overflow: hidden;
+    overflow-wrap: break-word;
+    height: 56px;
+    background-color: #fff;
+    box-shadow: inset 0 0 0 2px #388bff;
+    color: var(--ds-text,#172b4d);
+    cursor: text;
+    float: none;
+    resize: vertical;
+    width: 96%;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.todo_btn {
+    margin-left: 10px;
+}
+
+.comment {
+    margin: 20px 10px;
+}
+
+.add_comment input {
+    box-shadow:  0px 1px 1px #091e4240;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+    color: #172b4d;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    margin-left: 8px;
+    width: 90%;
+    padding: 4px 10px;
+}
+
+.add_comment button {
+    margin-left: 10px;
+    border-radius: 8px;
+}
+
+.comment_content .comment_item {
+    margin-left: 8px;
+    width: 90%;
+}
+
+.comment_content .comment_item label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #172b4d;
+    line-height: 20px;
+}
+
+.comment_content .comment_item span {
+    color: #44546f;
+}
+
+.comment_user {
+    box-shadow:  0px 1px 1px #091e4240;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+    color: #172b4d;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    width: 100%;
+    padding: 6px 10px;
+    background-color: #fff;
+}
+
+.comment_option {
+    margin-top: 4px;
+}
+
+.comment_option span{
+    font-size: 12px;
+    margin: 8px;
+    cursor: pointer;
+}
+
+.update_comment {
+    display: none;
+}
+
+#update_comment {
+    width: 100%;
+    border-color: #0d6efd;
+    height: 70px;
+}
+
+.form-check {
+    position: relative;
+}
+
+.form-check-label {
+    display: inline-block;
+    line-height: 24px;
+    padding: 5px;
+}
+
+.btn-update-todo {
+    font-size: 14px;
+    background-color: #091e420f;
+    border-radius: 5px;
+    padding: 4px 8px;
+    position: absolute;
+    right: 0;
+}
+
+.update_todo {
+    background-color: #091e420f;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+
+
+#update_todo {
+    width: 100%;
+    border-color: #0d6efd;
+    height: 60px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.add_user, .create_todo {
+    position: absolute;
+    width: 300px;
+    background: #fff;
+    z-index: 1;
+    top: 120%;
+    left: 0;
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: none;
+}
+
+.add_user .add_user_title, .create_todo_title {
+    text-align: center;
+    line-height: 40px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.add_user input , .create_todo input{
+    margin: 4px 0 12px;
+    width: 100%;
+    padding: 4px 8px;
+}
+
+.add_user p {
+    color: #44546f;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    margin: 10px 0;
+}
+
+.list_user {
+    border-radius: 3px;
+    color: #172b4d;
+    display: block;
+    line-height: 32px;
+    margin-bottom: 2px;
+    overflow: hidden;
+    padding: 4px;
+    position: relative;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.list_user .user_name {
+    line-height: 32px;
+    margin: 0;
+    font-size: 14px;
+}
+
+.added {
+    background-color: #091e4224;
 }
