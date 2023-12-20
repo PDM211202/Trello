@@ -48,4 +48,14 @@
     <servlet-name>DemoSocket</servlet-name>
     <url-pattern>/DemoSocket</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>WorkspaceView</display-name>
+    <servlet-name>WorkspaceView</servlet-name>
+    <servlet-class>IT6020003.view.WorkspaceView</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WorkspaceView</servlet-name>
+    <url-pattern>/WorkspaceView</url-pattern>
+  </servlet-mapping>
 </web-app>

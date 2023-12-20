@@ -28,6 +28,10 @@ span {
     font-size: 12px;
 }
 
+.a {
+	text-decoration: none;
+	color: #172b4d;
+}
 
 .hide {
     display: none;
@@ -68,10 +72,18 @@ span {
     margin: 18px 8px;
 }
 
-.dropdown {
-    
+.option__item a {
+    text-decoration: none;
+    color: #44546f;
 }
 
+.option__item a:hover {
+    color: #44546f;
+}
+
+.option__item a:active {
+    color: #44546f;
+}
 
 .working_space_name h3{
     line-height: 32px;
@@ -199,10 +211,6 @@ span {
     outline: none;
     padding: 8px 12px;
     transition-duration: 85ms;
-}
-
-#ProjectModal {
-	
 }
 
 .modal-img {

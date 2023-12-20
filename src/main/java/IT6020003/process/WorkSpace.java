@@ -135,6 +135,55 @@ public class WorkSpace {
 		// Trả về danh sách các đối tượng ArticleObject
 		return items;
 	}
+	
+	public WorkSpaceObject getAllWorkSpaceObjectsById(WorkSpaceObject similar, int id) {
+		// Khởi tạo một ArrayList để lưu trữ các đối tượng ProjectObject
+		WorkSpaceObject item = null;
+
+		// Xây dựng câu truy vấn SQL để lấy tất cả dữ liệu từ bảng Project
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT * FROM tblworkspace WHERE working_space_id= ?");
+
+		try {
+			// Tạo đối tượng PreparedStatement để thực hiện câu truy vấn
+			PreparedStatement pre = this.con.prepareStatement(sql.toString());
+			pre.setInt(1, id);
+			// Thực hiện truy vấn và lấy kết quả
+			ResultSet rs = pre.executeQuery();
+
+			// Kiểm tra xem ResultSet có giá trị không
+			if (rs != null) {
+				// Duyệt qua tất cả các dòng kết quả
+				while (rs.next()) {
+					// Tạo đối tượng ProjectObject để lưu trữ thông tin từ ResultSet
+					item = new WorkSpaceObject();
+
+					// Đọc dữ liệu từ ResultSet và set giá trị cho đối tượng ArticleObject
+					item.setWorking_space_id(rs.getInt("working_space_id"));
+					item.setWorking_space_name(rs.getString("working_space_name"));
+					item.setUser_id(rs.getInt("user_id"));
+					item.setWorking_space_create_date(rs.getString("working_space_create_date"));
+					item.setWorking_space_background_src(rs.getString("working_space_background_src"));
+					item.setWorking_space_avatar_src(rs.getString("working_space_avatar_src"));
+					// Thêm đối tượng ArticleObject vào danh sách
+				}
+			}
+
+		} catch (SQLException e) {
+			// Xử lý ngoại lệ và in thông báo lỗi
+			e.printStackTrace();
+
+			try {
+				// Rollback lại trạng thái trước khi xảy ra lỗi
+				this.con.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+
+		// Trả về danh sách các đối tượng ArticleObject
+		return item;
+	}
 
 	public boolean addWorkSpace(WorkSpaceObject item) {
 		// Xây dựng câu truy vấn SQL để chèn dữ liệu vào bảng workspace
@@ -186,7 +235,7 @@ public class WorkSpace {
 	}
 
 	// Phương thức cập nhật thông tin một bài viết trong cơ sở dữ liệu
-	public boolean updateWorkSpace(WorkSpaceObject item, int id) {
+	public boolean updateWorkSpace(WorkSpaceObject item) {
 		// Xây dựng câu truy vấn SQL để cập nhật dữ liệu trong bảng workspace
 		StringBuilder sql = new StringBuilder();
 		sql.append("UPDATE tblworkspace SET ");
@@ -194,7 +243,7 @@ public class WorkSpace {
 		sql.append("user_id = ?, ");
 		sql.append("working_space_create_date = ?, ");
 		sql.append("working_space_background_src = ?, ");
-		sql.append("working_space_avatar_src = ?, ");
+		sql.append("working_space_avatar_src = ? ");
 		sql.append("WHERE working_space_id = ?");
 
 		try {
@@ -207,8 +256,8 @@ public class WorkSpace {
 			pre.setInt(2, item.getUser_id());
 			pre.setString(3, item.getWorking_space_create_date());
 			pre.setString(4, item.getWorking_space_background_src());
-			pre.setString(6, item.getWorking_space_avatar_src());
-			pre.setInt(5, id);
+			pre.setString(5, item.getWorking_space_avatar_src());
+			pre.setInt(6, item.getWorking_space_id());
 
 			// Thực hiện câu truy vấn cập nhật dữ liệu
 			int result = pre.executeUpdate();
@@ -283,11 +332,12 @@ public class WorkSpace {
 
 	public static void main(String[] args) {
 		WorkSpaceObject w = new WorkSpaceObject();
-		w.setWorking_space_name("WS1");
+		w.setWorking_space_name("WS12");
+		w.setWorking_space_id(4);
 		w.setUser_id(1);
 		WorkSpace ws = new WorkSpace();
 
-		if (!ws.addWorkSpace(w)) {
+		if (!ws.updateWorkSpace(w)) {
 			System.out.println("-----KHÔNG THÀNH CÔNG-----");
 		}
 

@@ -52,3 +52,20 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	});
 });
+
+// Đảm bảo DOM đã tải xong trước khi thực hiện các hành động
+document.addEventListener('DOMContentLoaded', function() {
+    // Lắng nghe sự kiện click trên thẻ span
+    document.querySelectorAll('span[data-bs-toggle="modal"]').forEach(function(span) {
+        span.addEventListener('click', function() {
+            // Lấy giá trị id của thẻ span
+            var wsId = this.id;
+
+            // Gán giá trị id vào thẻ input có name là 'workspace_id'
+            var input = document.querySelector('input[name="workspace_id"]');
+            if(input) {
+                input.value = wsId;
+            }
+        });
+    });
+});

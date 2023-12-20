@@ -59,7 +59,7 @@ public class HomeView extends HttpServlet {
 		out.append(
 				"        integrity=\"sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3\" crossorigin=\"anonymous\">");
 		out.append("    <title>Hello, world!</title>");
-		out.append("    <link rel=\"stylesheet\" href=\"/itad/css/home.css\">");
+		out.append("    <link rel=\"stylesheet\" href=\"/itad/css/homes.css\">");
 		out.append("</head>");
 
 		out.append("<body>");
@@ -95,10 +95,11 @@ public class HomeView extends HttpServlet {
 		ArrayList<WorkSpaceObject> list_ws = ws.getAllWorkSpaceObjectsByUserId(null, items.getUser_id());
 		list_ws.forEach(item_ws -> {
 			out.append("                    <li class=\"list-group-item\">");
-			out.append("                        <div class=\"d-flex\">");
-			out.append("                            <img class=\"img_lg\" style=\"width: 24px; height: 24px;\" src=\""
-					+ item_ws.getWorking_space_avatar_src() + "\" alt=\"\">");
-			out.append("                            <p class=\"m-0\">" + item_ws.getWorking_space_name() + "</p>");
+			out.append("                        <div >");
+			out.append("                        	<a class=\"d-flex\" href=\"http://localhost:8080/itad/WorkspaceView?workspace_id="+item_ws.getWorking_space_id()+"\">");
+			out.append("                            	<img class=\"img_lg\" style=\"width: 24px; height: 24px;\" src=\""+ item_ws.getWorking_space_avatar_src() + "\" alt=\"\">");
+			out.append("                            	<p class=\"m-0\">" + item_ws.getWorking_space_name() + "</p>");
+			out.append("                        	</a>");
 			out.append("                        </div>");
 			out.append("                    </li>");
 		});
@@ -142,20 +143,27 @@ public class HomeView extends HttpServlet {
 			out.append(
 					"                        <div class=\"working_space_options col-8 d-flex justify-content-end mb-3\">");
 			out.append("                            <div class=\"option__item d-flex\">");
-			out.append("                                <i class=\"fa fa-list-alt\"></i>");
-			out.append("                                <p>Bảng</p>");
+			
+			out.append("                            	<a href=\"http://localhost:8080/itad/WorkspaceView?workspace_id="+item_ws.getWorking_space_id()+"#board\" class=\"d-flex\">");
+			out.append("                                	<i class=\"fa fa-list-alt\"></i>");
+			out.append("                                	<p>Bảng</p>");
+			out.append("                                </a>");
 			out.append("                            </div>");
 			out.append("                            <div class=\"option__item d-flex\">");
 			out.append("                                <i class=\"fa fa-grip-vertical\"></i>");
 			out.append("                                <p>Dạng xem</p>");
 			out.append("                            </div>");
 			out.append("                            <div class=\"option__item d-flex\">");
-			out.append("                                <i class=\"fa fa-user\"></i>");
-			out.append("                                <p>Thành viên</p>");
+			out.append("                            	<a href=\"http://localhost:8080/itad/WorkspaceView?workspace_id="+item_ws.getWorking_space_id()+"#member\" class=\"d-flex\">");
+			out.append("                                	<i class=\"fa fa-user\"></i>");
+			out.append("                                	<p>Thành viên</p>");
+			out.append("                                </a>");
 			out.append("                            </div>");
 			out.append("                            <div class=\"option__item d-flex\">");
-			out.append("                                <i class=\"fa fa-cog\"></i>");
-			out.append("                                <p>Cài đặt</p>");
+			out.append("                            	<a href=\"http://localhost:8080/itad/WorkspaceView?workspace_id="+item_ws.getWorking_space_id()+"#setting\" class=\"d-flex\">");
+			out.append("                                	<i class=\"fa fa-cog\"></i>");
+			out.append("                                	<p>Cài đặt</p>");
+			out.append("                                </a>");
 			out.append("                            </div>");
 			out.append("                        </div>");
 
@@ -170,7 +178,7 @@ public class HomeView extends HttpServlet {
 				out.append("                        </div>");
 			});
 
-			out.append(this.addProject(item_ws));
+			out.append(this.addProject(item_ws.getWorking_space_id()));
 			out.append("                    </div>");
 		});
 
@@ -178,7 +186,7 @@ public class HomeView extends HttpServlet {
 		out.append("            </div>");
 		out.append("        </div>");
 		out.append("    </div>");
-		out.append("    <script src=\"/itad/js/home.js\"></script>");
+		out.append("    <script src=\"/itad/js/index.js\"></script>");
 		out.append("    <!-- Optional JavaScript; choose one of the two! -->");
 		out.append("    <!-- Option 1: Bootstrap Bundle with Popper -->");
 		out.append("    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js\"");
@@ -233,12 +241,12 @@ public class HomeView extends HttpServlet {
 		return out;
 	}
 
-	private StringBuilder addProject(WorkSpaceObject item_ws) {
+	private StringBuilder addProject(int ws_id) {
 		StringBuilder out = new StringBuilder();
 		out.append(
 				"                        <div class=\"working_space_list_item col-3\" style=\"position: relative; background-color: #091e420f;\">");
 		out.append(
-				"                            <span data-bs-toggle=\"modal\" data-bs-target=\"#ProjectModal\" style=\"cursor: pointer; width: 100%; height: 100%; display: inline-block; text-align: center; line-height: 110px;\">Tạo bảng mới</span>");
+				"                            <span id=\""+ws_id+"\" data-bs-toggle=\"modal\" data-bs-target=\"#ProjectModal\" style=\"cursor: pointer; width: 100%; height: 100%; display: inline-block; text-align: center; line-height: 110px;\">Tạo bảng mới "+ws_id+"</span>");
 		out.append(
 				"<div class=\"modal fade\" id=\"ProjectModal\" tabindex=\"-1\" aria-labelledby=\"ProjectModalLabel\" aria-hidden=\"true\">");
 		out.append("    <div class=\"modal-dialog\">");
@@ -255,7 +263,7 @@ public class HomeView extends HttpServlet {
 				"            			<div class=\"modal-img mb-3\" style=\"background-image: url(http://localhost:8080/itad/img/background.jpg);\">");
 		out.append("            				<img src=\"https://trello.com/assets/14cda5dc635d1f13bc48.svg\">");
 		out.append("            			</div>");
-		out.append("						<input type='hidden' name='workspace_id' id='workspace_id' value=\""+item_ws.getWorking_space_id()+"\">");
+		out.append("						<input type='hidden' name='workspace_id'>");
 		out.append("						<input type='hidden' name='backgroundImage' id='backgroundImageInput'>");
 		out.append("            			<span>Phông nền</span>");
 		out.append("            			<div class=\"project_bg\">");
@@ -273,7 +281,7 @@ public class HomeView extends HttpServlet {
 		out.append("            				</div>");
 		out.append("            			</div>");
 		out.append("            			<span>Tiêu đề bảng</span>");
-		out.append("                    	<input class=\"m-3\" type=\"text\" name=\"project_name\" id=\"\">");
+		out.append("                    	<input class=\"m-3\" type=\"text\" value=\"demo "+ws_id+"\" name=\"project_name\" id=\"\">");
 		out.append("            		</div>");
 		out.append("            		<div class=\"modal-footer\">");
 		out.append(
@@ -331,14 +339,14 @@ public class HomeView extends HttpServlet {
 	        }
 	    } else {
 	    	String backgroundImage = request.getParameter("backgroundImage");
-	    	String workspace_id = request.getParameter("workspace_id");
+	    	String workspaceId = request.getParameter("workspace_id");
 	    	String project_name = request.getParameter("project_name");
 	    	
 	    	ProjectObject pObject = new ProjectObject();
 	    	pObject.setProject_background_src(backgroundImage);
 	    	pObject.setProject_name(project_name);
-	    	pObject.setWorking_space_id(Integer.parseInt(workspace_id));
-	    	
+	    	pObject.setWorking_space_id(Integer.parseInt(workspaceId));
+	    	System.out.println("workspace_id: " + workspaceId);
 	    	Project p = new Project();
 	    	boolean isSuccess = p.addProject(pObject);
 	    	if (isSuccess) {

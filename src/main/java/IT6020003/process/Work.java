@@ -58,6 +58,7 @@ public class Work {
 					item = new WorkObject();
 
 					// Đọc dữ liệu từ ResultSet và set giá trị cho đối tượng ArticleObject
+					item.setWork_id(rs.getInt("work_id"));
 					item.setWork_name(rs.getString("work_name"));
 					item.setProject_id(rs.getInt("project_id"));
 					item.setWork_position(rs.getString("work_position"));
