@@ -10,8 +10,10 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import IT6020003.objects.ProjectObject;
+import IT6020003.objects.UserObject;
 import IT6020003.objects.WorkSpaceObject;
 import IT6020003.process.Project;
+import IT6020003.process.User;
 import IT6020003.process.WorkSpace;
 
 /**
@@ -213,7 +215,7 @@ public class WorkspaceView extends HttpServlet {
 		out.append("                                        aria-label=\"Close\"></button>");
 		out.append("                                </div>");
 		out.append("                                <div class=\"modal-body\">");
-		out.append("                                    <h4>Nhập tên không gian làm việc \"PDM\" để xóa</h4>");
+		out.append("                                    <h4>Nhập tên không gian làm việc \""+wsObject.getWorking_space_name()+"\" để xóa</h4>");
 		out.append("                                    <span>Những điều cần biết:</span>");
 		out.append("                                    <ul>");
 		out.append("                                        <li>Điều này là vĩnh viễn và không thể hoàn tác.</li>");
@@ -222,9 +224,9 @@ public class WorkspaceView extends HttpServlet {
 		out.append("                                        <li>Các thành viên bảng sẽ không thể tương tác với các bảng đã đóng.</li>");
 		out.append("                                    </ul>");
 		out.append("                                    <span>Nhập tên không gian làm việc để xóa</span>");
-		out.append("                                    <form action=\"\" method=\"post\">");
-		out.append("                                        <input type=\"text\" name=\"workspace_name\" id=\"\">");
-		out.append("                                        <button type=\"submit\" class=\"btn btn-danger\">Xóa không gian làm việc</button>");
+		out.append("                                    <form action=\"/itad/WorkspaceView?workspace_id="+wsObject.getWorking_space_id()+"\" method=\"post\">");
+		out.append("                                        <input class=\"deleteWorkspace\" type=\"text\" name=\"workspace_name\" id=\""+wsObject.getWorking_space_name()+"\">");
+		out.append("                                        <button type=\"submit\" class=\"deleteBtn btn btn-secondary\">Xóa không gian làm việc</button>");
 		out.append("                                    </form>");
 		out.append("                                </div>");
 		out.append("                            </div>");
@@ -281,7 +283,7 @@ public class WorkspaceView extends HttpServlet {
 		out.append("    </div>");
 		out.append("");
 		out.append("    <script src=\"/itad/js/index.js\"></script>");
-		out.append("    <script src=\"/itad/js/workspace.js\"></script>");
+		out.append("    <script src=\"/itad/js/workspace_demo.js\"></script>");
 		out.append("");
 		out.append("    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js\"");
 		out.append("        integrity=\"sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p\"");
@@ -365,6 +367,13 @@ public class WorkspaceView extends HttpServlet {
 			System.out.println("-----KHÔNG THÀNH CÔNG-----");
 		}
 	}
+	
+	protected void deleteWorkSpace(String WorkspaceId) {
+		WorkSpace ws = new WorkSpace();
+		if (!ws.deleteWorkSpaceById(Integer.parseInt(WorkspaceId))) {
+			System.out.println("-----KHÔNG THÀNH CÔNG-----");
+		}
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -375,16 +384,22 @@ public class WorkspaceView extends HttpServlet {
 		String WorkspaceName = request.getParameter("ws_name");
 		String ProjectName = request.getParameter("project_name");
 		String backgroundImage = request.getParameter("backgroundImage");
+		
+		User u = new User();
+		UserObject user = u.getUserObjectByWorkSpaceId(null, Integer.parseInt(WorkspaceId));
+		
 
 		if (WorkspaceName != "" && WorkspaceName != null) {
 			updateWorkSpaceName(WorkspaceId, WorkspaceName);
 			response.sendRedirect("http://localhost:8080/itad/WorkspaceView?workspace_id=" + WorkspaceId);
-		}
-		
-		if (ProjectName != "" && ProjectName != null) {
+		} else if (ProjectName != "" && ProjectName != null) {
 			addProject(WorkspaceId, ProjectName, backgroundImage);
 			response.sendRedirect("http://localhost:8080/itad/WorkspaceView?workspace_id=" + WorkspaceId);
+		} else {
+			deleteWorkSpace(WorkspaceId);
+			response.sendRedirect("http://localhost:8080/itad/HomeView?email=" + user.getUser_email());
 		}
+		
 		
 		doGet(request, response);
 	}

@@ -158,6 +158,67 @@ public class User {
 			// Trả về danh sách các đối tượng ArticleObject
 			return item;
 		}
+		
+		public UserObject getUserObjectByWorkSpaceId(UserObject similar, int id) {
+			// Khởi tạo một ArrayList để lưu trữ các đối tượng ProjectObject
+			UserObject item = null;
+
+			// Xây dựng câu truy vấn SQL để lấy tất cả dữ liệu từ bảng Project
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT * FROM tbluser WHERE working_space_id= ?");
+
+			try {
+				// Tạo đối tượng PreparedStatement để thực hiện câu truy vấn
+				PreparedStatement pre = this.con.prepareStatement(sql.toString());
+				pre.setInt(1, id);
+				// Thực hiện truy vấn và lấy kết quả
+				ResultSet rs = pre.executeQuery();
+
+				// Kiểm tra xem ResultSet có giá trị không
+				if (rs != null) {
+					// Duyệt qua tất cả các dòng kết quả
+					while (rs.next()) {
+						// Tạo đối tượng ProjectObject để lưu trữ thông tin từ ResultSet
+						item = new UserObject();
+
+						// Đọc dữ liệu từ ResultSet và set giá trị cho đối tượng ArticleObject
+						item.setUser_id(rs.getInt("user_id"));
+						item.setUser_parent_id(rs.getInt("user_parent_id"));
+						item.setUser_email(rs.getString("user_email"));
+						item.setUser_background_src(rs.getString("user_background_src"));
+						item.setUser_background_avatar_src(rs.getString("user_background_avatar_src"));
+						item.setUser_created_date(rs.getString("user_created_date"));
+						item.setUser_recently_viewed(rs.getString("user_recently_viewed"));
+						item.setUser_password(rs.getString("user_password"));
+						item.setUser_name(rs.getString("user_name"));
+						item.setUser_fullname(rs.getString("user_fullname"));
+						item.setUser_birthday(rs.getString("user_birthday"));
+						item.setUser_mobilephone(rs.getString("user_mobilephone"));
+						item.setUser_homephone(rs.getString("user_homephone"));
+						item.setUser_address(rs.getString("user_address"));
+						item.setUser_jobarea(rs.getString("user_jobarea"));
+						item.setUser_job(rs.getString("user_job"));
+						item.setUser_roles(rs.getString("user_roles"));
+						item.setUser_logged_in(rs.getBoolean("user_logged_in"));
+						// Thêm đối tượng ArticleObject vào danh sách
+					}
+				}
+
+			} catch (SQLException e) {
+				// Xử lý ngoại lệ và in thông báo lỗi
+				e.printStackTrace();
+
+				try {
+					// Rollback lại trạng thái trước khi xảy ra lỗi
+					this.con.rollback();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+
+			// Trả về danh sách các đối tượng ArticleObject
+			return item;
+		}
 
 		public boolean addUser(UserObject item) {
 			// Xây dựng câu truy vấn SQL để chèn dữ liệu vào bảng tbluser

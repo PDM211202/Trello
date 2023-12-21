@@ -123,6 +123,90 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card" draggable="true" data-drop-target-for-element="true" work-position
+                        style="width: 19rem;">
+                        <!-- <img src="..." class="card-img-top" alt="..."> -->
+                        <div class="card-body">
+                            <div class="card__header">
+                                <h5 class="card-title" style="width: 86%;">Card 1</h5>
+                                <i class="fa fa-bars"></i>
+                            </div>
+                            <div class="card__content">
+                                <div class="list-group" data-drop-target-for-element="true">
+                                    <div class="list-group-item" task-position draggable="true"
+                                        data-drop-target-for-element="true">
+                                        <div class="overlay" data-bs-toggle="modal" data-bs-target="#TodoListModal">
+                                            <i class="fa fa-edit"></i>
+                                        </div>
+                                        <div class="item__top">
+                                            item 2
+                                        </div>
+                                        <div class="item__bottom mt-1">
+                                            card 1
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card__bottom mt-2">
+                                <button class="btn_show" type="submit">
+                                    <i class="fa fa-plus"></i>
+                                    <span>Thêm thẻ</span>
+                                </button>
+                                <div class="add_task hidden">
+                                    <form action="" method="post">
+                                        <input id="task_name" type="text" placeholder="Nhập tiêu đề cho thẻ này">
+                                        <div class="add_option">
+                                            <button class="btn btn-primary btn_add" onclick="addTask()">Thêm
+                                                thẻ</button>
+                                            <div class="btn_close" onclick=""><i class="fa fa-times"></i></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" draggable="true" data-drop-target-for-element="true" work-position
+                        style="width: 19rem;">
+                        <!-- <img src="..." class="card-img-top" alt="..."> -->
+                        <div class="card-body">
+                            <div class="card__header">
+                                <h5 class="card-title" style="width: 86%;">Card 1</h5>
+                                <i class="fa fa-bars"></i>
+                            </div>
+                            <div class="card__content">
+                                <div class="list-group" data-drop-target-for-element="true">
+                                    <div class="list-group-item" task-position draggable="true"
+                                        data-drop-target-for-element="true">
+                                        <div class="overlay" data-bs-toggle="modal" data-bs-target="#TodoListModal">
+                                            <i class="fa fa-edit"></i>
+                                        </div>
+                                        <div class="item__top">
+                                            item 3
+                                        </div>
+                                        <div class="item__bottom mt-1">
+                                            card 1
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card__bottom mt-2">
+                                <button class="btn_show" type="submit">
+                                    <i class="fa fa-plus"></i>
+                                    <span>Thêm thẻ</span>
+                                </button>
+                                <div class="add_task hidden">
+                                    <form action="" method="post">
+                                        <input id="task_name" type="text" placeholder="Nhập tiêu đề cho thẻ này">
+                                        <div class="add_option">
+                                            <button class="btn btn-primary btn_add" onclick="addTask()">Thêm
+                                                thẻ</button>
+                                            <div class="btn_close" onclick=""><i class="fa fa-times"></i></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Modal -->
@@ -381,12 +465,11 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <script src="../js/index.js"></script>
+    <script src="../js/project.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

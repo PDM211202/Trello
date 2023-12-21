@@ -290,7 +290,7 @@ public class WorkSpace {
 	}
 
 	// Phương thức xóa một bài viết từ cơ sở dữ liệu theo ID
-	public boolean deleteWorkSpaceById(WorkSpaceObject item, int id) {
+	public boolean deleteWorkSpaceById(int id) {
 		// Câu truy vấn SQL để xóa bản ghi từ bảng workspace dựa trên article_id
 		String sql = "DELETE FROM tblworkspace WHERE working_space_id = ?";
 

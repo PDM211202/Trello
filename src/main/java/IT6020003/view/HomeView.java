@@ -59,7 +59,7 @@ public class HomeView extends HttpServlet {
 		out.append(
 				"        integrity=\"sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3\" crossorigin=\"anonymous\">");
 		out.append("    <title>Hello, world!</title>");
-		out.append("    <link rel=\"stylesheet\" href=\"/itad/css/homes.css\">");
+		out.append("    <link rel=\"stylesheet\" href=\"/itad/css/home.css\">");
 		out.append("</head>");
 
 		out.append("<body>");
