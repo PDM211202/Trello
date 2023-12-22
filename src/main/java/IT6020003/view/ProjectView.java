@@ -8,13 +8,19 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 
+import IT6020003.function.TaskPositionComparator;
 import IT6020003.objects.ProjectObject;
 import IT6020003.objects.WorkObject;
+import IT6020003.objects.WorkSpaceObject;
 import IT6020003.objects.TaskObject;
+import IT6020003.objects.UserObject;
 import IT6020003.process.Project;
 import IT6020003.process.Task;
+import IT6020003.process.User;
 import IT6020003.process.Work;
+import IT6020003.process.WorkSpace;
 
 /**
  * Servlet implementation class ProjectView
@@ -41,10 +47,13 @@ public class ProjectView extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		String projectId = request.getParameter("project_id");
-//	    if (projectId != null && !projectId.isEmpty()) {
-//	        // Gọi phương thức xử lý project ID
-//	        getAllProjectId(projectId);
-//	    }
+		String email = request.getParameter("email");
+		
+		User u = new User();
+		UserObject user = u.getUserObjectByEmail(null, email);
+		WorkSpace ws = new WorkSpace();
+		ArrayList<WorkSpaceObject> list_ws = ws.getAllWorkSpaceObjectsByUserId(null, user.getUser_id());
+		
 		
 		out.append("<!doctype html>");
 		out.append("<html lang=\"en\">");
@@ -74,7 +83,7 @@ public class ProjectView extends HttpServlet {
 		out.append("                        <img src=\"/itad/img/logo.png\" alt=\"\">");
 		out.append("                    </div>");
 		out.append("                    <div class=\"menu__header__mid\">");
-		out.append("                        <p>PDM's work</p>");
+		out.append("                        <p>"+user.getUser_name()+"</p>");
 		out.append("                        <span>Miễn phí</span>");
 		out.append("                    </div>");
 		out.append("                    <div class=\"menu__header__right\">");
@@ -132,48 +141,68 @@ public class ProjectView extends HttpServlet {
 		out.append("                    </div>");
 		out.append("                </div>");
 		out.append("                <div class=\"content__main\">");
-		out.append("                    <div class=\"card\" draggable=\"true\" data-drop-target-for-element=\"true\" work-position");
-		out.append("                        style=\"width: 19rem;\">");
-		out.append("                        <!-- <img src=\"...\" class=\"card-img-top\" alt=\"...\"> -->");
-		out.append("                        <div class=\"card-body\">");
-		out.append("                            <div class=\"card__header\">");
-		out.append("                                <h5 class=\"card-title\" style=\"width: 86%;\">Card 1</h5>");
-		out.append("                                <i class=\"fa fa-bars\"></i>");
-		out.append("                            </div>");
-		out.append("                            <div class=\"card__content\">");
-		out.append("                                <div class=\"list-group\" data-drop-target-for-element=\"true\">");
-		out.append("                                    <div class=\"list-group-item\" task-position draggable=\"true\"");
-		out.append("                                        data-drop-target-for-element=\"true\">");
-		out.append("                                        <div class=\"overlay\" data-bs-toggle=\"modal\" data-bs-target=\"#TodoListModal\">");
-		out.append("                                            <i class=\"fa fa-edit\"></i>");
-		out.append("                                        </div>");
-		out.append("                                        <div class=\"item__top\">");
-		out.append("                                            item 1");
-		out.append("                                        </div>");
-		out.append("                                        <div class=\"item__bottom mt-1\">");
-		out.append("                                            card 1");
-		out.append("                                        </div>");
-		out.append("                                    </div>");
-		out.append("                                </div>");
-		out.append("                            </div>");
-		out.append("                            <div class=\"card__bottom mt-2\">");
-		out.append("                                <button class=\"btn_show\" type=\"submit\">");
-		out.append("                                    <i class=\"fa fa-plus\"></i>");
-		out.append("                                    <span>Thêm thẻ</span>");
-		out.append("                                </button>");
-		out.append("                                <div class=\"add_task hidden\">");
-		out.append("                                    <form action=\"\" method=\"post\">");
-		out.append("                                        <input id=\"task_name\" type=\"text\" placeholder=\"Nhập tiêu đề cho thẻ này\">");
-		out.append("                                        <div class=\"add_option\">");
-		out.append("                                            <button class=\"btn btn-primary btn_add\" onclick=\"addTask()\">Thêm");
-		out.append("                                                thẻ</button>");
-		out.append("                                            <div class=\"btn_close\" onclick=\"\"><i class=\"fa fa-times\"></i></div>");
-		out.append("                                        </div>");
-		out.append("                                    </form>");
-		out.append("                                </div>");
-		out.append("                            </div>");
-		out.append("                        </div>");
-		out.append("                    </div>");
+		
+		Work w = new Work();
+		ArrayList<WorkObject> list_w = w.getAllWorkObjectsByProjectId(null, Integer.parseInt(projectId));
+		list_w.forEach(item_w -> {
+			out.append("                    <div class=\"card\" draggable=\"true\" data-drop-target-for-element=\"true\" work-position");
+			out.append("                        style=\"width: 19rem;\">");
+			out.append("                        <!-- <img src=\"...\" class=\"card-img-top\" alt=\"...\"> -->");
+			out.append("                        <div class=\"card-body\">");
+			out.append("                            <div class=\"card__header\">");
+			out.append("                                <h5 class=\"card-title\" style=\"width: 86%;\">"+item_w.getWork_name()+"</h5>");
+			out.append("                                <i class=\"fa fa-bars\"></i>");
+			out.append("                            </div>");
+			out.append("                            <div class=\"card__content\">");
+			out.append("                                <div class=\"list-group\" data-drop-target-for-element=\"true\">");
+			Task t = new Task();
+			ArrayList<TaskObject> list_t = t.getAllTaskObjectsByWorkId(null, item_w.getWork_id());
+			Collections.sort(list_t, new TaskPositionComparator());			
+			list_t.forEach(item_t -> {
+				out.append("                                    <div class=\"list-group-item\" task-position=\""+item_t.getTask_position()+"\" draggable=\"true\"");
+				out.append("                                        data-drop-target-for-element=\"true\">");
+				out.append("                                        <div class=\"overlay\" data-bs-toggle=\"modal\" data-bs-target=\"#TodoListModal\">");
+				out.append("                                            <i class=\"fa fa-edit\"></i>");
+				out.append("                                        </div>");
+				out.append("                                        <div class=\"item__top\">");
+				out.append("                                            "+item_t.getTask_name()+"");
+				out.append("                                        </div>");
+				out.append("                                        <div class=\"item__bottom mt-1\">");
+				out.append("                                            card 1");
+				out.append("                                        </div>");
+				out.append("                                    </div>");
+				
+			});
+			TaskObject lastTaskObject = null;
+			if (!list_t.isEmpty()) {
+			    // Lấy ra đối tượng cuối cùng trong danh sách
+			    lastTaskObject = list_t.get(list_t.size() - 1);
+			}
+			out.append("                                </div>");
+			out.append("                            </div>");
+			out.append("                            <div class=\"card__bottom mt-2\">");
+			out.append("                                <button class=\"btn_show\" type=\"submit\">");
+			out.append("                                    <i class=\"fa fa-plus\"></i>");
+			out.append("                                    <span>Thêm thẻ</span>");
+			out.append("                                </button>");
+			out.append("                                <div class=\"add_task hidden\">");
+			out.append("                                    <form action=\"/itad/ProjectView?project_id="+projectId+"&email="+email+"\" method=\"post\">");
+			out.append("                                        <input name=\"task_name\" id=\"task_name\" type=\"text\" placeholder=\"Nhập tiêu đề cho thẻ này\">");
+			out.append("                                        <input name=\"work_id\" type=\"hidden\" value=\""+item_w.getWork_id()+"\">");
+			out.append("                                        <input class=\"input-task-position\" name=\"task_position\" value=\""+lastTaskObject.getTask_position()+"\" type=\"hidden\">");
+			out.append("                                        <div class=\"add_option\">");
+			out.append("                                            <button class=\"btn btn-primary btn_add\">Thêm");
+			out.append("                                                thẻ</button>");
+			out.append("                                            <div class=\"btn_close\"><i class=\"fa fa-times\"></i></div>");
+			out.append("                                        </div>");
+			out.append("                                    </form>");
+			out.append("                                </div>");
+			out.append("                            </div>");
+			out.append("                        </div>");
+			out.append("                    </div>");
+		});
+		
+		
 		out.append("                </div>");
 		out.append("                <!-- Modal -->");
 		out.append("                <div class=\"modal fade\" id=\"TodoListModal\" tabindex=\"-1\" aria-labelledby=\"TodoListModalLabel\"");
@@ -450,12 +479,29 @@ public class ProjectView extends HttpServlet {
 
 
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String ProjectId = request.getParameter("project_id");
+		String email = request.getParameter("email");
+		String TaskName = request.getParameter("task_name");
+		String WorkId = request.getParameter("work_id");
+		String TaskPosition = request.getParameter("task_position");
+		if (TaskName != "" && TaskName != null && WorkId != "" && WorkId != null) {
+			Task t = new Task();
+			TaskObject tObject = new TaskObject();
+			tObject.setTask_name(TaskName);
+			tObject.setWork_id(Integer.parseInt(WorkId));
+			tObject.setTask_position(Integer.parseInt(TaskPosition) + 1);
+			if (!t.addTask(tObject)) {
+				System.out.println("-----KHÔNG THÀNH CÔNG-----");
+			}
+			response.sendRedirect("/itad/ProjectView?project_id="+ProjectId+"&email="+email+"");
+		}
 		
 		doGet(request, response);
 	}

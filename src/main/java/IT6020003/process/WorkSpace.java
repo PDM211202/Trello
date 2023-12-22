@@ -41,7 +41,7 @@ public class WorkSpace {
 
 		// Xây dựng câu truy vấn SQL để lấy tất cả dữ liệu từ bảng Project
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT * FROM tblworkspace");
+		sql.append("SELECT * FROM tblworkspace WHERE delete_ws= 0");
 
 		try {
 			// Tạo đối tượng PreparedStatement để thực hiện câu truy vấn
@@ -92,7 +92,7 @@ public class WorkSpace {
 
 		// Xây dựng câu truy vấn SQL để lấy tất cả dữ liệu từ bảng Project
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT * FROM tblworkspace WHERE user_id= ?");
+		sql.append("SELECT * FROM tblworkspace WHERE delete_ws= 0 and user_id= ?");
 
 		try {
 			// Tạo đối tượng PreparedStatement để thực hiện câu truy vấn
@@ -142,7 +142,7 @@ public class WorkSpace {
 
 		// Xây dựng câu truy vấn SQL để lấy tất cả dữ liệu từ bảng Project
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT * FROM tblworkspace WHERE working_space_id= ?");
+		sql.append("SELECT * FROM tblworkspace WHERE working_space_id= ? and delete_ws= 0");
 
 		try {
 			// Tạo đối tượng PreparedStatement để thực hiện câu truy vấn
@@ -292,7 +292,7 @@ public class WorkSpace {
 	// Phương thức xóa một bài viết từ cơ sở dữ liệu theo ID
 	public boolean deleteWorkSpaceById(int id) {
 		// Câu truy vấn SQL để xóa bản ghi từ bảng workspace dựa trên article_id
-		String sql = "DELETE FROM tblworkspace WHERE working_space_id = ?";
+		String sql = "UPDATE tblworkspace SET delete_ws= 1 WHERE working_space_id = ?";
 
 		try {
 			// Tạo đối tượng PreparedStatement để thực hiện câu truy vấn

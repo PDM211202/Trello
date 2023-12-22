@@ -88,7 +88,7 @@ public class Task {
 		return items;
 	}
 
-	public ArrayList<TaskObject> getAllTaskObjectsByWorkSpaceId(TaskObject similar, int id) {
+	public ArrayList<TaskObject> getAllTaskObjectsByWorkId(TaskObject similar, int id) {
 		// Khởi tạo một ArrayList để lưu trữ các đối tượng TaskObject
 		ArrayList<TaskObject> items = new ArrayList<>();
 		TaskObject item;
@@ -289,5 +289,12 @@ public class Task {
 
 		// Trả về false nếu có lỗi xảy ra
 		return false;
+	}
+	
+	public static void main(String[] args) {
+		Task t = new Task();
+		ArrayList<TaskObject> list_t = t.getAllTaskObjectsByWorkId(null, 1);
+		
+		System.out.println(list_t);
 	}
 }

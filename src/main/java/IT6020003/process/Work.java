@@ -108,6 +108,7 @@ public class Work {
 					item = new WorkObject();
 
 					// Đọc dữ liệu từ ResultSet và set giá trị cho đối tượng ArticleObject
+					item.setWork_id(rs.getInt("work_id"));
 					item.setWork_name(rs.getString("work_name"));
 					item.setProject_id(rs.getInt("project_id"));
 					item.setWork_position(rs.getString("work_position"));
@@ -147,6 +148,7 @@ public class Work {
 
 			// Truyền giá trị cho các tham số trong câu truy vấn từ đối tượng
 			// WorkObject
+			
 			pre.setString(1, item.getWork_name());
 			pre.setInt(2, item.getProject_id());
 			pre.setString(3, item.getWork_position());

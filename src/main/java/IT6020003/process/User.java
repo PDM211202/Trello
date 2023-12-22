@@ -11,7 +11,7 @@ import IT6020003.ConnectionPoolImpl;
 import IT6020003.objects.UserObject;
 
 public class User {
-	// kết nối để làm việc vs csdl
+		// kết nối để làm việc vs csdl
 		private Connection con;
 
 		// bộ quản lý kết nối của riêng section
@@ -399,5 +399,11 @@ public class User {
 
 			// Trả về false nếu có lỗi xảy ra
 			return false;
+		}
+		
+		public static void main(String[] args) {
+			User u = new User();
+			UserObject user = u.getUserObjectByWorkSpaceId(null, 1);
+			System.out.println("user: " + user);
 		}
 }

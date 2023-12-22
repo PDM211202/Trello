@@ -45,6 +45,8 @@ public class HomeView extends HttpServlet {
 		User u = new User();
 		PrintWriter out = response.getWriter();
 		UserObject items = u.getUserObjectByEmail(null, email);
+		
+		
 
 		out.append("<!doctype html>");
 		out.append("<html lang=\"en\">");
@@ -96,7 +98,7 @@ public class HomeView extends HttpServlet {
 		list_ws.forEach(item_ws -> {
 			out.append("                    <li class=\"list-group-item\">");
 			out.append("                        <div >");
-			out.append("                        	<a class=\"d-flex\" href=\"http://localhost:8080/itad/WorkspaceView?workspace_id="+item_ws.getWorking_space_id()+"\">");
+			out.append("                        	<a class=\"d-flex\" href=\"http://localhost:8080/itad/WorkspaceView?workspace_id="+item_ws.getWorking_space_id()+"&email="+items.getUser_email()+"\">");
 			out.append("                            	<img class=\"img_lg\" style=\"width: 24px; height: 24px;\" src=\""+ item_ws.getWorking_space_avatar_src() + "\" alt=\"\">");
 			out.append("                            	<p class=\"m-0\">" + item_ws.getWorking_space_name() + "</p>");
 			out.append("                        	</a>");
@@ -174,7 +176,7 @@ public class HomeView extends HttpServlet {
 						"                        <div class=\"working_space_list_item col-3\" style=\"background-image:");
 				out.append("                            url(http://localhost:8080/itad/img/background.jpg);\">");
 				out.append("                            <a href=\"http://localhost:8080/itad/ProjectView?project_id="
-						+ item_p.getProject_id() + "\">" + item_p.getProject_name() + "</a>");
+						+ item_p.getProject_id() + "&email="+email+"\">" + item_p.getProject_name() + "</a>");
 				out.append("                        </div>");
 			});
 
@@ -263,7 +265,7 @@ public class HomeView extends HttpServlet {
 				"            			<div class=\"modal-img mb-3\" style=\"background-image: url(http://localhost:8080/itad/img/background.jpg);\">");
 		out.append("            				<img src=\"https://trello.com/assets/14cda5dc635d1f13bc48.svg\">");
 		out.append("            			</div>");
-		out.append("						<input type='hidden' name='workspace_id'>");
+		out.append("						<input type='hidden' name='workspace_id'> ");
 		out.append("						<input type='hidden' name='backgroundImage' id='backgroundImageInput'>");
 		out.append("            			<span>Phông nền</span>");
 		out.append("            			<div class=\"project_bg\">");
@@ -342,6 +344,7 @@ public class HomeView extends HttpServlet {
 	    	String workspaceId = request.getParameter("workspace_id");
 	    	String project_name = request.getParameter("project_name");
 	    	
+	    	
 	    	ProjectObject pObject = new ProjectObject();
 	    	pObject.setProject_background_src(backgroundImage);
 	    	pObject.setProject_name(project_name);
@@ -358,7 +361,6 @@ public class HomeView extends HttpServlet {
 	        }
 	    }
 
-		
 		doGet(request, response);
 	}
 
